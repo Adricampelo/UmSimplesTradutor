@@ -1,7 +1,6 @@
 public class Parser {
     private Scanner scan;
-    private Token currentToken;
-
+    private char currentToken;
 
     public Parser(byte[] input) {
         scan = new Scanner(input);
@@ -17,8 +16,8 @@ public class Parser {
         currentToken = scan.nextToken();
     }
 
-    private void match(TokenType t) {
-        if (currentToken.type == t) {
+    private void match(char t) {
+        if (currentToken == t) {
             nextToken();
         }else {
             throw new Error("syntax error");
@@ -26,25 +25,29 @@ public class Parser {
     }
 
     void expr() {
-        number();
+        digit();
         oper();
     }
 
-    void number () {
-        System.out.println("push " + currentToken.lexeme);
-        match(TokenType.NUMBER);
+    void digit () {
+        if (Character.isDigit(currentToken)) {
+            System.out.println("push " + currentToken);
+            match(currentToken);
+        } else {
+            throw new Error("syntax error");
+        }
     }
 
 
     void oper () {
-        if (currentToken.type == TokenType.PLUS) {
-            match(TokenType.PLUS);
-            number();
+        if (currentToken == '+') {
+            match('+');
+            digit();
             System.out.println("add");
             oper();
-        } else if (currentToken.type == TokenType.MINUS) {
-            match(TokenType.MINUS);
-            number();
+        } else if (currentToken == '-') {
+            match('-');
+            digit();
             System.out.println("sub");
             oper();
         }

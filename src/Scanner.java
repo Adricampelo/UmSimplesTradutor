@@ -29,25 +29,16 @@ public class Scanner {
         }
 
         String n = new String(input, start, current - start);
-
         return new Token(TokenType.NUMBER, n);
     }
 
     public Token nextToken() {
-        skipWhitespace();
-
         char ch = peek();
 
         if (ch == '0') {
             advance();
-
-            return new Token(
-                    TokenType.NUMBER,
-                    Character.toString(ch)
-            );
-
+            return new Token(TokenType.NUMBER, Character.toString(ch));
         } else if (Character.isDigit(ch)) {
-
             return number();
         }
 
@@ -65,14 +56,6 @@ public class Scanner {
 
             default:
                 throw new Error("lexical error at " + ch);
-        }
-    }
-
-    private void skipWhitespace() {
-        char ch = peek();
-        while (ch == ' ' || ch == '\r' || ch == '\t' || ch == '\n') {
-            advance();
-            ch = peek();
         }
     }
 }
