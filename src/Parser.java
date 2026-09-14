@@ -67,12 +67,18 @@ public class Parser {
         }
     }
 
+
     void expr() {
         term();
         oper();
     }
 
     void term() {
+        fator();
+        multDiv();
+    }
+
+    void fator() {
         if (currentToken.type == TokenType.NUMBER) {
             number();
         } else if (currentToken.type == TokenType.IDENT) {
@@ -115,5 +121,27 @@ public class Parser {
 
             oper();
         }
+
     }
+    void multDiv() {
+        if (currentToken.type == TokenType.MULT) {
+            match(TokenType.MULT);
+            fator();
+
+            output.append("mul")
+                    .append(System.lineSeparator());
+
+            multDiv();
+
+        } else if (currentToken.type == TokenType.DIV) {
+            match(TokenType.DIV);
+            fator();
+
+            output.append("div")
+                    .append(System.lineSeparator());
+
+            multDiv();
+        }
+    }
+
 }

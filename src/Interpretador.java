@@ -14,7 +14,9 @@ class Command {
         SUB,
         PUSH,
         POP,
-        PRINT
+        PRINT,
+        MUL,
+        DIV,
 
         ;
     }
@@ -93,6 +95,18 @@ public class Interpretador {
                 case PRINT:
                     var arg = stack.pop();
                     System.out.println(arg);
+                    break;
+
+                case MUL:
+                     arg2 = stack.pop();
+                     arg1 = stack.pop();
+                    stack.push(arg1 * arg2);
+                    break;
+
+                case DIV:
+                    arg2 = stack.pop();
+                    arg1 = stack.pop();
+                    stack.push(arg1 / arg2);
                     break;
 
 

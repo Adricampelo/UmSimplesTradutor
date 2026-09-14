@@ -6,6 +6,8 @@ public enum TokenType {
     IDENT,
     LET,
     PRINT,
+    MULT,
+    DIV,
 
     EOF
 }

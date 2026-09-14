@@ -79,6 +79,14 @@ public class Scanner {
                 advance();
                 return new Token(TokenType.MINUS, "-");
 
+            case '*':
+                advance();
+                return new Token(TokenType.MULT, "*");
+
+            case '/':
+                advance();
+                return new Token(TokenType.DIV, "/");
+
             case '=':
                 advance();
                 return new Token (TokenType.EQ,"=");
