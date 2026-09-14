@@ -111,6 +111,14 @@ public class Scanner {
             case '\0':
                 return new Token(TokenType.EOF, "EOF");
 
+            case '(':
+                advance();
+                return new Token(TokenType.LPAREN, "(");
+
+            case ')':
+                advance();
+                return new Token(TokenType.RPAREN, ")");
+
             default:
                 throw new Error("lexical error at " + ch);
         }

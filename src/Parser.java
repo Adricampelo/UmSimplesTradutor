@@ -81,13 +81,20 @@ public class Parser {
     void fator() {
         if (currentToken.type == TokenType.NUMBER) {
             number();
-        } else if (currentToken.type == TokenType.IDENT) {
 
+        } else if (currentToken.type == TokenType.IDENT) {
             output.append("push ")
                     .append(currentToken.lexeme)
                     .append(System.lineSeparator());
 
             match(TokenType.IDENT);
+
+        } else if (currentToken.type == TokenType.LPAREN) {
+            match(TokenType.LPAREN);
+
+            expr();
+
+            match(TokenType.RPAREN);
 
         } else {
             throw new Error("syntax error");

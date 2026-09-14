@@ -8,6 +8,8 @@ public enum TokenType {
     PRINT,
     MULT,
     DIV,
+    LPAREN,
+    RPAREN,
 
     EOF
 }
