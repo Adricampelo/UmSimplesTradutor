@@ -44,8 +44,8 @@ class Command {
 public class Interpretador {
 
     List<String[]> commands;
-    Stack<Integer> stack = new Stack<>();
-    Map<String,Integer> variables = new HashMap<>();
+    Stack<Double> stack = new Stack<>();
+    Map<String, Double> variables = new HashMap<>();
 
     Interpretador (String input) {
         final String eol = System.getProperty("line.separator");
@@ -85,7 +85,7 @@ public class Interpretador {
                     if (value != null) {
                         stack.push(value);
                     } else {
-                        stack.push (Integer.parseInt(command.arg));
+                        stack.push(Double.parseDouble(command.arg));
                     }
                     break;
                 case POP:

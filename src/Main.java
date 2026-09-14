@@ -2,10 +2,10 @@ public class Main {
     public static void main(String[] args) {
 
         String input = """
-                let a = 42 + 6 * 2;
-                let b = 20 / 5;
-                print a + b;
-                """;
+        let a = 4.5;
+        let b = 2;
+        print a / b;
+        """;
 
         Parser p = new Parser(input.getBytes());
         p.parse();

@@ -40,6 +40,19 @@ public class Scanner {
             advance();
         }
 
+        if (peek() == '.') {
+            advance();
+
+
+            if (!Character.isDigit(peek())) {
+                throw new Error("lexical error: número inválido");
+            }
+
+            while (Character.isDigit(peek())) {
+                advance();
+            }
+        }
+
         String n = new String(input, start, current - start);
         return new Token(TokenType.NUMBER, n);
     }
